@@ -1,0 +1,5 @@
+md5: 8df7214bc7cd0b48831c0d2ccf4504c0
+outs:
+- cache: true
+  md5: 9e145bc80815735230c94be0563d7308.dir
+  path: 20_newsgroup
