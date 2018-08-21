@@ -1,0 +1,12 @@
+name: poc_ml_versioning
+channels:
+  - defaults
+dependencies:
+  - jupyter=1.0.0
+  - matplotlib
+  - numexpr
+  - numpy
+  - pandas
+  - pip
+  - scikit-learn
+  - scipy
