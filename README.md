@@ -36,4 +36,5 @@ Proposed test pipeline:
 3. Modify script by hand to get out the parameters (TODO: clean this dirty hack)
 4. Initialize git and DVC repo
 5. Version empty notebook and hand-written script
-6. Run DVC on script to version data results
+6. Create a cmd file to store the long dvc command and call cleanly the python script (see `./scripts/cmd/` and `./scripts/python/`)
+7. Run DVC on script to version data results

@@ -1,0 +1,12 @@
+cmd: python ./scripts/python/load_sklearn_data.py
+deps:
+- md5: ef86a51ade65134e9d4a81cceca52649.dir
+  path: data
+md5: c31210011c102dd86fd40950c6a0ba7a
+outs:
+- cache: true
+  md5: 88764f36f3464d272f30aa3bbb630954
+  path: data/data_train.csv
+- cache: true
+  md5: 759590d4075a3a9d2678c47fdba029f3
+  path: data/data_test.csv
