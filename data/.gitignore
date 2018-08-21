@@ -1,3 +1,4 @@
 data_train.csv
 data_test.csv
 20_newsgroup
+data_train_tokenized.csv
