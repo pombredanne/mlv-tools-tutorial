@@ -11,7 +11,7 @@ Proposed test pipeline:
 1. 
     a. Raw text -> tokenizing and cleaning -> clean_data_1 (Preprocessing 1)
     
-    b. Raw text -> tokeninzing and lemmatisation and cleaning -> clean_data_2 (Preprocessing 2)
+    b. Raw text -> tokenizing and lemmatisation and cleaning -> clean_data_2 (Preprocessing 2)
 2. 
     a. Clean data -> Bag-of-word (hyperparameter: vocabulary size) -> encoded data
     
@@ -25,6 +25,8 @@ Proposed test pipeline:
     
     c. Latent Dirichlet Allocation -> labels
    
+## 
+
 
 ## Loading data
    
@@ -38,3 +40,8 @@ Proposed test pipeline:
 5. Version empty notebook and hand-written script
 6. Create a cmd file to store the long dvc command and call cleanly the python script (see `./scripts/cmd/` and `./scripts/python/`)
 7. Run DVC on script to version data results
+
+
+
+## TODO
+- Invalidate dvc files when cherrypicking commits from one step branch to another

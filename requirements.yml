@@ -10,3 +10,5 @@ dependencies:
   - pip
   - scikit-learn
   - scipy
+  - pip:
+    - nltk
