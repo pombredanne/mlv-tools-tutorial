@@ -5,6 +5,7 @@ from os import makedirs
 from os.path import abspath
 from os.path import realpath, dirname, join, basename
 
+import docstring_parser as dc_parser
 from nbconvert import PythonExporter
 
 logging.getLogger().setLevel(logging.INFO)
@@ -17,10 +18,44 @@ def get_config(template_path: str) -> dict:
             'NbConvertApp': {'export_format': 'python'}}
 
 
+def extract_docstring_and_param(cell_content: str):
+    recording = False
+    docstring = []
+    # TODO improve docstring extraction
+    for line in cell_content.split('\n'):
+        if '"""' in line:
+            if not recording and docstring:
+                raise Exception(
+                    f'Only one docstring allowed in first Notebook cell, '
+                    f'{len(docstring)} found')
+            recording = not recording
+            docstring.append(line.strip())
+            continue
+        if recording:
+            docstring.append(line.strip())
+    if docstring:
+        try:
+            docstring_data = dc_parser.parse('\n'.join(docstring).replace('\t', ''))
+        except dc_parser.ParseError as e:
+            raise Exception(f'Docstring format error. {e}')
+        if not docstring_data:
+            raise Exception('Cannot parse docstring from first cell.')
+        params = ['{}{}'.format(p.arg_name,
+                                '' if not p.type_name else f':{p.type_name}')
+                  for p in docstring_data.params]
+        return docstring, params
+    return [], ''
+
+
 def export(input_notebook_path: str, output_path: str):
     exporter = PythonExporter(get_config(TEMPLATE_PATH))
-
-    output_script, r = exporter.from_filename(input_notebook_path)
+    exporter.register_filter(name='extract_docstring_and_param',
+                             jinja_filter=extract_docstring_and_param)
+    try:
+        output_script, _ = exporter.from_filename(input_notebook_path)
+    except Exception as e:
+        print(type(e))
+        raise e
     if not output_script:
         logging.warning('Empty notebook provided. Nothing to do.')
         return
@@ -42,8 +77,8 @@ if __name__ == '__main__':
     if not output_path:
         script_name = '{}.py'.format(
             basename(args.notebook).replace('.ipynb', '')
-            .replace(' ', '_')
-            .lower())
+                .replace(' ', '_')
+                .lower())
         output_path = join(CURRENT_DIR, '..', 'pipeline', 'steps', script_name)
 
     export(args.notebook, output_path)

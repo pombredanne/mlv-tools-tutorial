@@ -1,7 +1,17 @@
 # Generated from ./pipeline/notebooks/Load_with_sklearn.ipynb
+    
+    
 
 
-def load_with_sklearn(subset='train'):
+
+def load_with_sklearn(subset:str):
+
+    """
+
+    :param str subset: The kin of subset to generate. Value must be in ('train', 'test')
+
+    """
+
 
 
     import pandas as pd
