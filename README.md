@@ -24,11 +24,65 @@ Proposed test pipeline:
     b. Logisitic Regression -> labels
     
     c. Latent Dirichlet Allocation -> labels
+
+
+## Standard versioning process
+   
+   1. Write a **Jupyter Notebook** which correspond to a pipeline step (See **Jupyter Notebook** syntax section)
+   2. Test your **Jupyter Notebook**
+   3. Clean output and add it under git (TODO hooks)
+   3. Convert the **Jupyter Notebook** into a parameterized **Python 3** script using *ipynb_to_python*
+       
+            ipynb_to_python -n ./pipeline/notebooks/[notebook_name] -o ./pipeline/steps/[python_script_name]
+   4. Ensure python script is well created into `./pipeline/steps/[python_script_name]`
+   5. Create python command associated to to generated parameterized **Python 3** script
+   
+            script_to_cmd -i ./pipeline/steps/[python_script_name] \
+                        --out-py-cmd ./scripts/python/[python_cmd_name] \
+                        --out-bash-cmd ./scripts/cmd/[dvc_cmd_name] 
+                        
+   6. Ensure **Python 3** command is well created
+            
+            ./scripts/python/[python_cmd_name] -h
+            
+   7. Ensure **DVC** command is well created
+   8. Add generated commands and **Python 3** script under git
+   9. Add step inputs under dvc
+   10. Run dvc command `./scripts/cmd/[dvc_cmd_name]`
+   11. Add generated dvc files under git 
    
 
-## Loading data
-   
-*Input:* 20newsgroup folder (in `./data/20_newsgroup`)
+
+## Preliminary step: create project structure
+
+    cd ml-poc-versioning
+    git checkout -b [TODO put a ref commit ]
+    
+    mkdir -p pipeline/notebooks
+    mkdir -p pipeline/steps
+    touch pipeline/__init__.py
+    touch pipeline/steps/__init__.py
+    mkdir -p scripts/python
+    mkdir -p scripts/cmd
+    
+Following structure must be created
+
+    .
+    ├── pipeline
+    │   ├── notebooks # contains Jupyter Notebook (One by pipeline step)
+    │   └── steps     # contains generated python script (obtained from Jupyter Notebook convertion)
+    └── scripts
+        ├── cmd       # contains dvc command wrapped in a bash script
+        └── python    # contains python command which wrapped python script
+        
+
+    
+     
+
+## First step: loading data
+
+Fetch data from [20_newsgroup](http://scikit-learn.org/stable/datasets/twenty_newsgroups.html).
+
 *Output:* train and test csv files (`./data/data_train.csv` and `./data/data_test.csv`)
 
 1. Write first step (data loading) in a notebook
