@@ -1,0 +1,10 @@
+cmd: ./scripts/python/tokenize_text --input-csv-file ./data/data_train.csv --output-csv-file
+  ./data/data_train_tokenized.csv
+deps:
+- md5: 88764f36f3464d272f30aa3bbb630954
+  path: data/data_train.csv
+md5: 66aa14486e65ef410c9cabe389378230
+outs:
+- cache: true
+  md5: 60c56979cdcacf7501642d7fd7c86f3e
+  path: data/data_train_tokenized.csv
