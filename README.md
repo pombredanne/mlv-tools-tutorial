@@ -38,3 +38,6 @@ Proposed test pipeline:
 5. Version empty notebook and hand-written script
 6. Create a cmd file to store the long dvc command and call cleanly the python script (see `./scripts/cmd/` and `./scripts/python/`)
 7. Run DVC on script to version data results
+
+## TODO
+How do we define inputs and outputs for grid search hyperparemeter optimisation? Do we version mlruns files?
