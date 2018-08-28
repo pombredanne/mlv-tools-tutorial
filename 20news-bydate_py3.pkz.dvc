@@ -1,0 +1,7 @@
+cmd: ./scripts/python/fetch_dataset --target-directory ./data/20_newsgroup/ --cache-path
+  ./data/20news-bydate_py3.pkz
+md5: d153deae4958dd8cbe838d6bf575002d
+outs:
+- cache: true
+  md5: 44b0e88012610a1f52e00f8d4bd8826e
+  path: data/20news-bydate_py3.pkz
