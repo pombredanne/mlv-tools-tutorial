@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+# Command line for script 
+"""
+:param str subset: Subset of data to load
+
+:param str data_home: Path to parent directory to cache file
+
+:param str output_path: Path to output file
+"""
+import argparse
+from pipeline.steps.load_dataset import load_with_sklearn
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Command for script load_with_sklearn')
+    parser.add_argument('--subset', type=str, 
+            required=True, help="Subset of data to load")
+    parser.add_argument('--data-home', type=str, 
+            required=True, help="Path to parent directory to cache file")
+    parser.add_argument('--output-path', type=str, 
+            required=True, help="Path to output file")
+    args = parser.parse_args()
+
+    load_with_sklearn(args.subset, args.data_home, args.output_path)

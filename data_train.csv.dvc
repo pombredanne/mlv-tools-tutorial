@@ -1,0 +1,13 @@
+cmd: ./scripts/python/load_dataset --data-home ./data/ --subset train --output-path
+  ./data/data_train.csv
+deps:
+- md5: 44b0e88012610a1f52e00f8d4bd8826e
+  path: data/20news-bydate_py3.pkz
+md5: 0844c7af47cd25cb96c8fd24f58a0d67
+outs:
+- cache: true
+  md5: 88764f36f3464d272f30aa3bbb630954
+  path: data/data_train.csv
+- cache: true
+  md5: 759590d4075a3a9d2678c47fdba029f3
+  path: data/data_test.csv
