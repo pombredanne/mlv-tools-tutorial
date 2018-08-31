@@ -10,3 +10,6 @@ dependencies:
   - pip
   - scikit-learn
   - scipy
+  - cysignals
+  - cython
+  - pyfasttext  
