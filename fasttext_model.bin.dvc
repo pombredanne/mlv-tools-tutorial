@@ -1,0 +1,10 @@
+cmd: ./scripts/python/classify --learning-rate 0.7 --epochs 10 --input-csv-file ./data/data_train_tokenized.csv
+  --model-path ./data/fasttext_model
+deps:
+- md5: 60c56979cdcacf7501642d7fd7c86f3e
+  path: data/data_train_tokenized.csv
+md5: 1832f61bb4d4b537819cdee3cc74efd3
+outs:
+- cache: true
+  md5: d55d396973800b1332f8b6f24abd65e7
+  path: data/fasttext_model.bin
