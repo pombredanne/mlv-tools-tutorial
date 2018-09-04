@@ -1,10 +1,13 @@
 cmd: ./scripts/python/classify --learning-rate 0.7 --epochs 10 --input-csv-file ./data/data_train_tokenized.csv
-  --model-path ./data/fasttext_model
+  --model-path ./data/fasttext_model --run-uuid-file ./data/run_uuid.txt
 deps:
 - md5: 60c56979cdcacf7501642d7fd7c86f3e
   path: data/data_train_tokenized.csv
-md5: 1832f61bb4d4b537819cdee3cc74efd3
+md5: 7f66e4f80568d4405b80dec6c69e0949
 outs:
 - cache: true
-  md5: d55d396973800b1332f8b6f24abd65e7
+  md5: 33de9d91a0116907988a058dfb600cd0
   path: data/fasttext_model.bin
+- cache: true
+  md5: 918c64f91d65aa0e30030f072e01e5a7
+  path: data/run_uuid.txt

@@ -3,9 +3,10 @@
 """
 :param str input_csv_file: Path to input file
 :param str model_path: Path to model files
+:param str run_uuid_file: Path to file for storing run uuid
 :param float learning_rate: Learning rate
 :param int epochs: Number of epochs
-:dvc-cmd: dvc run -d ./data/data_train_tokenized.csv  -o ./data/fasttext_model.bin ./scripts/python/classify --learning-rate 0.7 --epochs 10 --input-csv-file ./data/data_train_tokenized.csv  --model-path  ./data/fasttext_model 
+:dvc-cmd: dvc run -d ./data/data_train_tokenized.csv  -o ./data/fasttext_model.bin -o ./data/run_uuid.txt ./scripts/python/classify --learning-rate 0.7 --epochs 10 --input-csv-file ./data/data_train_tokenized.csv  --model-path  ./data/fasttext_model --run-uuid-file  ./data/run_uuid.txt 
 """
 import argparse
 from pipeline.steps.classify_with_fasttext import fasttext
@@ -19,6 +20,9 @@ if __name__ == '__main__':
     parser.add_argument('--model-path', type=str,
         required=True, help="Path to model files")
     
+    parser.add_argument('--run-uuid-file', type=str,
+        required=True, help="Path to file for storing run uuid")
+    
     parser.add_argument('--learning-rate', type=float,
         required=True, help="Learning rate")
     
@@ -27,4 +31,4 @@ if __name__ == '__main__':
     
     args = parser.parse_args()
 
-    fasttext(args.input_csv_file, args.model_path, args.learning_rate, args.epochs)
+    fasttext(args.input_csv_file, args.model_path, args.run_uuid_file, args.learning_rate, args.epochs)
