@@ -1,0 +1,10 @@
+cmd: ./scripts/python/evaluate --data-file ./data/data_train_tokenized.csv --run-uuid-file
+  ./data/run_uuid.txt --model-file ./data/fasttext_model.bin
+deps:
+- md5: 60c56979cdcacf7501642d7fd7c86f3e
+  path: data/data_train_tokenized.csv
+- md5: 918c64f91d65aa0e30030f072e01e5a7
+  path: data/run_uuid.txt
+- md5: 33de9d91a0116907988a058dfb600cd0
+  path: data/fasttext_model.bin
+md5: 779070b047672dc752cefeb55dd72e93

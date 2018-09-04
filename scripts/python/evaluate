@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+# Command line for script 
+"""
+:param str model_file: Path to model file
+:param str data_file: Path to data files
+:param str run_uuid_file: Path to file for storing run uuid
+:dvc-in data_file: ./data/data_train_tokenized.csv 
+:dvc-in run_uuid_file: ./data/run_uuid.txt 
+:dvc-in model_file: ./data/fasttext_model.bin 
+"""
+import argparse
+from pipeline.steps.evaluate import evaluate
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Command for script evaluate')
+    
+    parser.add_argument('--model-file', type=str,
+        required=True, help="Path to model file")
+    
+    parser.add_argument('--data-file', type=str,
+        required=True, help="Path to data files")
+    
+    parser.add_argument('--run-uuid-file', type=str,
+        required=True, help="Path to file for storing run uuid")
+    
+    args = parser.parse_args()
+
+    evaluate(args.model_file, args.data_file, args.run_uuid_file)
